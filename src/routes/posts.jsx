@@ -1,8 +1,10 @@
 import { Link, useLoaderData, useNavigate } from 'react-router-dom'
 import Post from '../components/Post'
 
+import { apiUrl } from '../utils'
+
 export async function loader() {
-  const response = await fetch('http://localhost:3000/api/v1/posts')
+  const response = await fetch(`${apiUrl}/posts`)
   const posts = await response.json()
   return posts
 }
@@ -12,7 +14,7 @@ export default function Posts() {
   const navigate = useNavigate()
 
   async function handleDelete(postId) {
-    await fetch(`http://localhost:3000/api/v1/posts/${postId}`, {
+    await fetch(`${apiUrl}/posts/${postId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,

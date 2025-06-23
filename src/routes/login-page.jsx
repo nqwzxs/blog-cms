@@ -1,10 +1,12 @@
 import { Form, redirect } from 'react-router-dom'
 
+import { apiUrl } from '../utils'
+
 export async function action({ request }) {
   const formData = await request.formData()
   const user = Object.fromEntries(formData)
 
-  const response = await fetch('http://localhost:3000/api/v1/auth/login', {
+  const response = await fetch(`${apiUrl}/auth/login`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',

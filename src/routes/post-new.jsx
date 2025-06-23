@@ -1,10 +1,12 @@
 import { Form, redirect } from 'react-router-dom'
 
+import { apiUrl } from '../utils'
+
 export async function action({ request }) {
   const formData = await request.formData()
   const post = Object.fromEntries(formData)
 
-  const response = await fetch('http://localhost:3000/api/v1/posts/', {
+  const response = await fetch(`${apiUrl}/posts/`, {
     method: 'post',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,

@@ -1,9 +1,11 @@
 import { format } from 'date-fns'
 import { useLoaderData } from 'react-router-dom'
 
+import { apiUrl } from '../utils'
+
 export async function loader({ params }) {
   const response = await fetch(
-    `http://localhost:3000/api/v1/posts/${params.postId}`
+    `${apiUrl}/posts/${params.postId}`
   )
   const post = await response.json()
   return post

@@ -1,8 +1,10 @@
 import { useLoaderData, useNavigate } from 'react-router-dom'
 import Comment from '../components/Comment'
 
+import { apiUrl } from '../utils'
+
 export async function loader() {
-  const response = await fetch('http://localhost:3000/api/v1/comments', {
+  const response = await fetch(`${apiUrl}/comments`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
@@ -16,7 +18,7 @@ export default function Comments() {
   const navigate = useNavigate()
 
   async function handleDelete(commentId) {
-    await fetch(`http://localhost:3000/api/v1/comments/${commentId}`, {
+    await fetch(`${apiUrl}/comments/${commentId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
